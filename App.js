@@ -1,6 +1,7 @@
 //Importa o criador de abas (Bottom Tabs) do react Navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+
 //Importa o container principal de navegação do react Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { Text, StyleSheet } from "react-native";
@@ -36,7 +37,9 @@ export default function App() {
             tabBarActiveTintColor: "#007AFF",
             tabBarInactiveTintColor: "#666",
             tabBarHideOnKeyboard: true,
-            animation: 'shift',
+            tabBarActiveBackgroundColor: "#021024",
+            tabBarInactiveBackgroundColor: "#021024",
+            animation: 'shift'
           }}
         >
           <Tab.Screen
