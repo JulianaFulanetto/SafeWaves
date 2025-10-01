@@ -19,7 +19,6 @@ enableScreens();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const styles = createStyles(useTheme());
 
   return (
     // É o provedor que gerencia o estado da navegação
