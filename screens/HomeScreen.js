@@ -1,7 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
+import { useTheme } from "@react-navigation/native";
+
+
 export default function HomeScreen() {
+  const styles = createStyles(useTheme());
+
   return (
     <View style={styles.container}>
       <AntDesign style={styles.Flecha} name="arrow-left" size={30} color="#244F7E" />
@@ -12,7 +17,8 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (theme) =>
+  StyleSheet.create({
   container: {
     backgroundColor: "#021024",
     flex: 1,
@@ -44,3 +50,4 @@ const styles = StyleSheet.create({
     borderBottomColor: "#244F7E", // Cor da linha
   },
 });
+
