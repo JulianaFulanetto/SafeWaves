@@ -13,7 +13,14 @@ export default function HomeScreen() {
       <Text style={styles.Title}>SafeWaves</Text>
       <Text style={styles.SubTitle}>Início</Text>
       <View style={styles.line} />
+
+
+    <View style={styles.row}>
+      <View style={styles.card}></View>
+      <View style={styles.card}></View>
     </View>
+    </View>
+
   );
 }
 
@@ -49,5 +56,18 @@ const createStyles = (theme) =>
     borderBottomWidth: 0.5, // Espessura da linha
     borderBottomColor: "#244F7E", // Cor da linha
   },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
+  card: {
+    flex: 1,
+    height: 120,
+    borderRadius: 20,
+    backgroundColor: "#102E50",
+    marginHorizontal: 5, // espaçamento entre os cards
+  },
+
 });
 
