@@ -1,8 +1,8 @@
-import { useColorScheme } from 'react-native';
+import { useColorScheme } from "react-native";
+import { darkTheme } from "../themes/dark";
+import { lightTheme } from "../themes/light";
 
 export const useThemeStyles = () => {
-  const colorScheme = useColorScheme();
-  return colorScheme === 'dark'
-    ? require('../hooks/dark').default
-    : require('../hooks/light').default;
+  const scheme = useColorScheme();
+  return scheme === "dark" ? darkTheme : lightTheme;
 };
