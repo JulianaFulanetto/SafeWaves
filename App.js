@@ -10,7 +10,13 @@ import { enableScreens } from "react-native-screens";
 import HomeScreen from "./screens/HomeScreen";
 
 
+
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import MonitoramentoScreen from "./screens/MonitoramentoScreen";
+import RelatorioScreen from "./screens/RelatorioScreen";
+import ConfiguracaoScreen from "./screens/ConfiguracaoScreen";
+import RotaScreen from "./screens/RotaScreen";
+import ComunidadeScreen from "./screens/ComunidadeScreen";
 
 //Ativa otimizações de telas nativas
 enableScreens();
@@ -42,7 +48,57 @@ export default function App() {
               ),
             }}
           />
-        </Tab.Navigator>
+
+          <Tab.Screen 
+          name="Monitoramento"
+          component={MonitoramentoScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Text style={{ fontSize: size * 0.8, color }}>👀</Text>
+            ),
+          }}
+          />
+
+          <Tab.Screen 
+          name="Relatorio"
+          component={RelatorioScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Text style={{ fontSize: size * 0.8, color }}>📊</Text>
+            ),
+          }}
+          />
+
+          <Tab.Screen 
+          name="Configuração"
+          component={ConfiguracaoScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Text style={{ fontSize: size * 0.8, color }}>⚙️</Text>
+            ),
+          }}
+          />
+
+          <Tab.Screen 
+          name="Rotas"
+          component={RotaScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Text style={{ fontSize: size * 0.8, color }}>🗺️</Text>
+            ),
+          }}
+          />
+
+          <Tab.Screen 
+          name="Comunidade"
+          component={ComunidadeScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Text style={{ fontSize: size * 0.8, color }}>👥</Text>
+            ),
+          }}
+          />
+          </Tab.Navigator>
 
       </NavigationContainer>
     </GestureHandlerRootView>
