@@ -18,6 +18,7 @@ import ConfiguracaoScreen from "./screens/ConfiguracaoScreen";
 import RotaScreen from "./screens/RotaScreen";
 import ComunidadeScreen from "./screens/ComunidadeScreen";
 
+
 //Ativa otimizações de telas nativas
 enableScreens();
 
@@ -25,7 +26,7 @@ enableScreens();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-
+  
   return (
     // É o provedor que gerencia o estado da navegação
     <GestureHandlerRootView style={styles.container}>
