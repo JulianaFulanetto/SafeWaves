@@ -1,51 +1,59 @@
+import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import { useTheme } from "../hooks/useThemeStyles";
+import { AntDesign } from "@expo/vector-icons";
+import { useThemeStyles } from "../hooks/useThemeStyles"; // Importa o hook personalizado
 
-export default function MonitoramentoScreen() {
-  // usa o hook corretamente
-  const theme = useTheme();
+const MonitoramentoScreen = () => {
+  const styles = createStyles(useThemeStyles()); 
 
-  // cria styles DINAMICAMENTE com base no tema
-  const styles = StyleSheet.create({
+
+  return (
+    <View style={styles.container}>
+      <AntDesign style={styles.Flecha} name="arrow-left" size={30} color="#244F7E" />
+      <Text style={styles.Title}>SafeWaves</Text>
+      <Text style={styles.SubTitle}>Relatório</Text>
+      <View style={styles.line} />
+    </View>
+  );
+}
+
+
+const createStyles = (theme) =>
+  StyleSheet.create({
     container: {
-      backgroundColor: theme?.background || "#ffffff",
       flex: 1,
+      backgroundColor: theme.background,
     },
     Flecha: {
-      position: "absolute",
-      top: 70,
-      left: 20,
+      position: "absolute", // Permite posicionar a seta de forma absoluta
+      top: 70, // Ajuste a posição vertical da seta
+      left: 20, // Ajuste a posição horizontal da seta
       fontSize: 30,
     },
+
     Title: {
       marginTop: 60,
       marginLeft: 65,
       fontSize: 30,
       fontWeight: "bold",
-      color: theme?.primary || "#244F7E",
+      color: theme.text,
     },
     SubTitle: {
       marginTop: 0,
       marginLeft: 65,
       fontSize: 16,
-      opacity: 0.5,
-      color: theme?.primary || "#244F7E",
+      opacity:0.5,
+      
+      color: theme.text,
     },
     line: {
-      marginTop: 10,
-      marginHorizontal: 0,
-      borderBottomColor: theme?.primary || "#244F7E",
-      borderBottomWidth: 0.5,
+     
+      marginHorizontal: 0, // Margem lateral para ajustar o comprimento da linha
+      borderBottomWidth: 0.5, // Espessura da linha
+      width: "100%",
+     
+      backgroundColor: theme.border,
     },
   });
 
-  return (
-    <View style={styles.container}>
-      <AntDesign style={styles.Flecha} name="arrowleft" size={30} color={theme?.primary || "#244F7E"} />
-      <Text style={styles.Title}>SafeWaves</Text>
-      <Text style={styles.SubTitle}>Monitoramento</Text>
-      <View style={styles.line} />
-    </View>
-  );
-}
+export default MonitoramentoScreen;
