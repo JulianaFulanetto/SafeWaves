@@ -102,29 +102,29 @@ const createStyles = (theme) =>
       flex: 1,
       height: 129,
       borderRadius: 20,
-      backgroundColor: "#102E50",
+      backgroundColor: theme.buttonPrincipal,
       marginHorizontal: 5, // espaçamento entre os cards
       alignItems: "center",
       justifyContent: "center",
     },
     newCard: {
+      backgroundColor: theme.buttonSecundario,
       flex: 1,
       height: 129,
-      backgroundColor: "#041228",
       borderRadius: 20,
-      borderColor: "#091E47",
+      borderColor: theme.border,
       borderWidth: 1,
       marginHorizontal: 5, // espaçamento entre os cards
       alignItems: "center",
       justifyContent: "center",
     },
     nomeCard: {
-      color: "#B3CFE5",
+      color: theme.text,
       height: 70,
       fontSize: 11,
     },
     num: {
-      color: "#4A7FA7",
+      color: theme.number,
       fontSize: 30,
       fontWeight: "bold",
       position: "absolute",
@@ -133,7 +133,7 @@ const createStyles = (theme) =>
       alignItems: "center",
     },
     subNomeCard: {
-      color: "#B3CFE5",
+      color: theme.text,
       fontSize: 11,
       height: 25,
     },
