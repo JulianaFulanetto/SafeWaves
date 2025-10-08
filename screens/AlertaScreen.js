@@ -1,12 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
+
+
 import { useThemeStyles } from "../hooks/useThemeStyles";
 
 
-
-
-
-export default function RelatorioScreen() {
+export default function AlertaScreen() {
   const styles = createStyles(useThemeStyles());
 
   return (

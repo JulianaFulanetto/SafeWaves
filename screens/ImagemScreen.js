@@ -4,9 +4,7 @@ import { useThemeStyles } from "../hooks/useThemeStyles";
 
 
 
-
-
-export default function RelatorioScreen() {
+export default function ImagemScreen() {
   const styles = createStyles(useThemeStyles());
 
   return (
