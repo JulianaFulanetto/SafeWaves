@@ -3,10 +3,9 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { useTheme } from "@react-navigation/native";
-
+import { useThemeStyles } from "../hooks/useThemeStyles"; // Importa o hook personalizado
 export default function HomeScreen({ navigation }) {
-  const styles = createStyles(useTheme());
+  const styles = createStyles(useThemeStyles());
 
   return (
     <View style={styles.container}>
@@ -65,7 +64,7 @@ export default function HomeScreen({ navigation }) {
 const createStyles = (theme) =>
   StyleSheet.create({
     container: {
-      backgroundColor: "#021024",
+      backgroundColor: theme.background,
       flex: 1,
     },
     Flecha: {

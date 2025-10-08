@@ -1,11 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { useThemeStyles } from "../hooks/useThemeStyles";
 
-import { useTheme } from "@react-navigation/native";
+
+
 
 
 export default function RotaScreen() {
-  const styles = createStyles(useTheme());
+  const styles = createStyles(useThemeStyles());
 
   return (
     <View style={styles.container}>

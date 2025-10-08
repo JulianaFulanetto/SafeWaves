@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
-import { useTheme } from "@react-navigation/native";
+
+import { useThemeStyles } from "../hooks/useThemeStyles";
 
 
 export default function AlertaScreen() {
-  const styles = createStyles(useTheme());
+  const styles = createStyles(useThemeStyles());
 
   return (
     <View style={styles.container}>

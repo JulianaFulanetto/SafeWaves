@@ -14,7 +14,7 @@ import HomeScreen from "./screens/HomeScreen";
 import AlertaScreen from "./screens/AlertaScreen";
 import ImagemScreen from "./screens/ImagemScreen";
 
-import { useTheme } from "./hooks/useTheme";
+import { useThemeStyles } from "./hooks/useThemeStyles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import MonitoramentoScreen from "./screens/MonitoramentoScreen";
@@ -48,8 +48,7 @@ function HomeStack() {
 
 // ---------- APLICAÇÃO PRINCIPAL ----------
 export default function App() {
-  const theme = useTheme(); // Obtém o tema atual
-  const styles = createStyles(theme); // Usa o tema para criar os estilos
+  const styles = createStyles(useThemeStyles()); // Usa o tema para criar os estilos
 
   return (
     <GestureHandlerRootView style={styles.container}>
