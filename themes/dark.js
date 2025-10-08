@@ -9,6 +9,6 @@ export const darkTheme = {
   buttonSecundario: "#071B3D",
   shadow:"#00000",
   cardGrandeMonitoramento:"#102E50",
- SubcolorMonitoramento:"#102E50",
- ColorMonitoramento:"#647E9F",
+ SubcolorMonitoramento:"#4A7FA7",
+ ColorMonitoramento:"#B3CFE5",
 };

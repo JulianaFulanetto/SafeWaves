@@ -15,10 +15,13 @@ const MonitoramentoScreen = () => {
       <View style={styles.line} />
 
       <View style={styles.cardGrande}>
-<Text style={styles.CardTittle}>Sistema de Monitoramento</Text>
-<Text style={styles.CardSubTittle}>última atualização</Text>
-
-      </View>
+  <View style={styles.rowContainer}>
+    <Text style={styles.CardTittle}>Sistema de Monitoramento</Text>
+    <Text style={styles.CardSubTittle}>última atualização 1:00:00</Text>
+  </View>
+ 
+  <Text style={styles.sistemas}>Sistema ativo</Text>
+</View>
     </View>
   );
 }
@@ -68,12 +71,34 @@ height:325,
 marginTop:20,
 margin:20,
 borderRadius:20,
+flexDirection:'row',
     },
     CardSubTittle:{
       color:theme.SubcolorMonitoramento,
+      marginLeft:10,
+      marginTop:1,
+      fontSize:15,
+   
     },
     CardTittle:{
       color:theme.ColorMonitoramento,
+      marginTop:10,
+    fontSize:20,
+    fontWeight:"bold",
+      marginLeft:10,
+      
+    },
+    sistemas:{
+   
+   backgroundColor:"#A9DE94",
+   borderRadius:5,
+   width:90,
+   height:20,
+    },
+    sistemasText:{
+      
+      marginLeft:15,
+      marginTop:15,
     }
   });
 
