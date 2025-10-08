@@ -15,7 +15,8 @@ const MonitoramentoScreen = () => {
       <View style={styles.line} />
 
       <View style={styles.cardGrande}>
-
+<Text style={styles.CardTittle}>Sistema de Monitoramento</Text>
+<Text style={styles.CardSubTittle}>última atualização</Text>
 
       </View>
     </View>
@@ -61,13 +62,19 @@ const createStyles = (theme) =>
       backgroundColor: theme.border,
     },
     cardGrande:{
-backgroundColor:theme.cardGrande,
+backgroundColor:theme.cardGrandeMonitoramento,
 width:370,
 height:325,
 marginTop:20,
 margin:20,
 borderRadius:20,
     },
+    CardSubTittle:{
+      color:theme.SubcolorMonitoramento,
+    },
+    CardTittle:{
+      color:theme.ColorMonitoramento,
+    }
   });
 
 export default MonitoramentoScreen;
