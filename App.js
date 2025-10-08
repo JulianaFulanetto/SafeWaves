@@ -1,5 +1,8 @@
+
 //Importa o criador de abas (Bottom Tabs) do react Navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+//Importa o criador de pilhas (Stack Navigator)
+import { createStackNavigator } from "@react-navigation/stack";
 
 //Importa o container principal de navegação do react Navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -8,10 +11,12 @@ import { Text, StyleSheet } from "react-native";
 //Importa o enableScreens do react-native-screens para melhorar performance
 import { enableScreens } from "react-native-screens";
 import HomeScreen from "./screens/HomeScreen";
+import AlertaScreen from "./screens/AlertaScreen";
+import ImagemScreen from "./screens/ImagemScreen";
 
 import { useTheme } from "./hooks/useTheme";
-
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 import MonitoramentoScreen from "./screens/MonitoramentoScreen";
 import RelatorioScreen from "./screens/RelatorioScreen";
 import ConfiguracaoScreen from "./screens/ConfiguracaoScreen";
@@ -24,41 +29,53 @@ import Feather from '@expo/vector-icons/Feather';
 import Entypo from '@expo/vector-icons/Entypo';
 import Octicons from '@expo/vector-icons/Octicons';
 
-
 //Ativa otimizações de telas nativas
 enableScreens();
 
-//cria o componente de navegação abas (Tab Naviator)
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
+// ---------- STACK DA HOME ----------
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="AlertaScreen" component={AlertaScreen} />
+      <Stack.Screen name="ImagemScreen" component={ImagemScreen} />
+    </Stack.Navigator>
+  );
+}
+
+// ---------- APLICAÇÃO PRINCIPAL ----------
 export default function App() {
-  const styles = createStyles(useTheme());
+  const theme = useTheme(); // Obtém o tema atual
+  const styles = createStyles(theme); // Usa o tema para criar os estilos
 
   return (
-    // É o provedor que gerencia o estado da navegação
     <GestureHandlerRootView style={styles.container}>
       <NavigationContainer>
-        <Tab.Navigator style={styles.tab}
+        <Tab.Navigator
+          style={styles.tab}
           screenOptions={{
-            headerShown: false, //Oculta o cabeçalho superior
+            headerShown: false,
             tabBarActiveTintColor: "#244F7E",
             tabBarInactiveTintColor: "#253448",
             tabBarHideOnKeyboard: true,
             tabBarActiveBackgroundColor: "#021024",
             tabBarInactiveBackgroundColor: "#021024",
             animation: "shift",
-            tabBarStyle:{
-              backgroundColor:"#021024"
+            tabBarStyle: {
+              backgroundColor: "#021024",
             },
-            tabBarItemStyle:{
+            tabBarItemStyle: {
               borderTopWidth: 0,
-              borderTopColor: "#244F7E"
-            }
+              borderTopColor: "#244F7E",
+            },
           }}
         >
           <Tab.Screen
-            name="Home" //Nome da rota
-            component={HomeScreen}
+            name="Home"
+            component={HomeStack} // ← Aqui usamos o Stack
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Text style={{ fontSize: size * 0.8, color }}>
@@ -73,9 +90,7 @@ export default function App() {
             component={MonitoramentoScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Text style={{ fontSize: size * 0.8, color }}>
-                  <Feather name="activity" size={24} color="#244F7E" />
-                </Text>
+                <Feather name="activity" size={24} color="#244F7E" />
               ),
             }}
           />
@@ -85,9 +100,7 @@ export default function App() {
             component={RelatorioScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Text style={{ fontSize: size * 0.8, color }}>
-                  <Entypo name="bar-graph" size={24} color="#244F7E" />
-                </Text>
+                <Entypo name="bar-graph" size={24} color="#244F7E" />
               ),
             }}
           />
@@ -97,9 +110,7 @@ export default function App() {
             component={ConfiguracaoScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Text style={{ fontSize: size * 0.8, color }}>
-                  <Octicons name="gear" size={24} color="#244F7E" />
-                </Text>
+                <Octicons name="gear" size={24} color="#244F7E" />
               ),
             }}
           />
@@ -109,9 +120,7 @@ export default function App() {
             component={RotaScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Text style={{ fontSize: size * 0.8, color }}>
-                  <Entypo name="map" size={24} color="#244F7E" />
-                </Text>
+                <Entypo name="map" size={24} color="#244F7E" />
               ),
             }}
           />
@@ -121,9 +130,7 @@ export default function App() {
             component={ComunidadeScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Text style={{ fontSize: size * 0.8, color }}>
-                  <Ionicons name="people-outline" size={24} color="#244F7E" />
-                </Text>
+                <Ionicons name="people-outline" size={24} color="#244F7E" />
               ),
             }}
           />
@@ -132,11 +139,14 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
-
+// Função para criar estilos dinâmicos com base no tema
 const createStyles = (theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.background,
+      backgroundColor: theme.background, // Usa a cor de fundo do tema
+    },
+    tab: {
+      backgroundColor: theme.card, // Usa a cor do card do tema
     },
   });

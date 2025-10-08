@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert, TouchableOpacity } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -21,26 +21,42 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.line} />
 
       <View style={styles.row}>
-        <View style={styles.card}>
+        {/* Card 1 - Navega para AlertaScreen */}
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => navigation.navigate("AlertaScreen")}
+        >
           <Feather
             style={styles.alert}
             name="alert-triangle"
             size={75}
             color="#061931"
           />
-        </View>
-        <View style={styles.card}>
+        </TouchableOpacity>
+
+        {/* Card 2 - Navega para ImagemScreen */}
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => navigation.navigate("ImagemScreen")}
+        >
           <Ionicons name="videocam-outline" size={75} color="#061931" />
-        </View>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.row}>
-        <View style={styles.newCard}>
+        {/* Card 3 */}
+        <TouchableOpacity style={styles.newCard}>
           <Text style={styles.nomeCard}>Bateria</Text>
           <Text style={styles.num}>85%</Text>
           <Text style={styles.subNomeCard}>Sensores</Text>
-        </View>
-        <View style={styles.newCard}></View>
+        </TouchableOpacity>
+
+        {/* Card 4 */}
+        <TouchableOpacity style={styles.newCard}>
+          <Text style={styles.nomeCard}>Vizinhos</Text>
+          <Text style={styles.num}>25</Text>
+          <Text style={styles.subNomeCard}>Conectados</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -105,6 +121,21 @@ const createStyles = (theme) =>
     },
     nomeCard: {
       color: "#B3CFE5",
+      height: 70,
+      fontSize: 11,
+    },
+    num: {
+      color: "#4A7FA7",
+      fontSize: 30,
+      fontWeight: "bold",
+      position: "absolute",
+      marginTop: 0,
       height: 50,
+      alignItems: "center",
+    },
+    subNomeCard: {
+      color: "#B3CFE5",
+      fontSize: 11,
+      height: 25,
     },
   });
