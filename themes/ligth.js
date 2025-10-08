@@ -6,5 +6,6 @@ export const lightTheme = {
   buttonPrincipal: "#6DA5D1",
   buttonSecundario: "#B3CFE5",
   shadow:"#4A7FA7",
-  number:"#081E46"
+  number:"#081E46",
+  icons: "#A8D0EF",
 };

@@ -6,5 +6,6 @@ export const darkTheme = {
   buttonPrincipal: "#102E50",
   buttonSecundario: "#041228",
   shadow:"#00000",
-  number:"#4A7FA7"
+  number:"#4A7FA7",
+  incons:"#021024"
 };

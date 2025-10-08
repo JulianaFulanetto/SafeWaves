@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Alert, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -25,12 +32,7 @@ export default function HomeScreen({ navigation }) {
           style={styles.card}
           onPress={() => navigation.navigate("AlertaScreen")}
         >
-          <Feather
-            style={styles.alert}
-            name="alert-triangle"
-            size={75}
-            color="#061931"
-          />
+          <Feather style={styles.alert} name="alert-triangle" size={75} />
         </TouchableOpacity>
 
         {/* Card 2 - Navega para ImagemScreen */}
@@ -38,24 +40,44 @@ export default function HomeScreen({ navigation }) {
           style={styles.card}
           onPress={() => navigation.navigate("ImagemScreen")}
         >
-          <Ionicons name="videocam-outline" size={75} color="#061931" />
+          <Ionicons style={styles.camera} name="videocam-outline" size={75} />
         </TouchableOpacity>
       </View>
 
       <View style={styles.row}>
         {/* Card 3 */}
-        <TouchableOpacity style={styles.newCard}>
+        <View style={styles.newCard}>
           <Text style={styles.nomeCard}>Bateria</Text>
           <Text style={styles.num}>85%</Text>
           <Text style={styles.subNomeCard}>Sensores</Text>
-        </TouchableOpacity>
+        </View>
 
         {/* Card 4 */}
-        <TouchableOpacity style={styles.newCard}>
+        <View style={styles.newCard}>
           <Text style={styles.nomeCard}>Vizinhos</Text>
           <Text style={styles.num}>25</Text>
           <Text style={styles.subNomeCard}>Conectados</Text>
-        </TouchableOpacity>
+        </View>
+      </View>
+
+      <View style={styles.acoesRap}>
+        <Text style={styles.textAcoes}>Ações Rápidas</Text>
+
+        <View style={styles.rowButtons}>
+          <TouchableOpacity
+            style={styles.botaoVerde}
+            onPress={() => Alert.alert("Tranca ativada!")}
+          >
+            <Text style={styles.textoBotaoVerd}>Trancar</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.botaoVermelho}
+            onPress={() => Alert.alert("Emergência acionada!")}
+          >
+            <Text style={styles.textBotaoVerm}>Emergência</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -106,6 +128,10 @@ const createStyles = (theme) =>
       marginHorizontal: 5, // espaçamento entre os cards
       alignItems: "center",
       justifyContent: "center",
+      shadowRadius: { width: 0, height: 12 },
+      shadowOpacity: 0.58,
+      shadowRadius: 16,
+      elevation: 10,
     },
     newCard: {
       backgroundColor: theme.buttonSecundario,
@@ -117,6 +143,10 @@ const createStyles = (theme) =>
       marginHorizontal: 5, // espaçamento entre os cards
       alignItems: "center",
       justifyContent: "center",
+      shadowRadius: { width: 0, height: 12 },
+      shadowOpacity: 0.58,
+      shadowRadius: 16,
+      elevation: 10,
     },
     nomeCard: {
       color: theme.text,
@@ -136,5 +166,68 @@ const createStyles = (theme) =>
       color: theme.text,
       fontSize: 11,
       height: 25,
+    },
+    acoesRap: {
+      backgroundColor: theme.buttonSecundario,
+      borderRadius: 20,
+      borderColor: theme.border,
+      borderWidth: 1,
+      width: 375,
+      height: 110,
+      marginHorizontal: 5,
+      marginTop: 40,
+      shadowRadius: { width: 0, height: 12 },
+      shadowOpacity: 0.58,
+      shadowRadius: 16,
+      elevation: 10,
+      shadowColor: theme.shadowColor,
+    },
+    textAcoes: {
+      margin: 10,
+      color: theme.text,
+    },
+    camera: {
+      color: theme.icons,
+    },
+    alert: {
+      color: theme.icons,
+    },
+    rowButtons: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      paddingHorizontal: 10,
+      marginTop: 5,
+    },
+
+    botaoVerde: {
+      flex: 1,
+      borderRadius: 20,
+      borderColor: "#61C840",
+      borderWidth: 2,
+      borderRadius: 12,
+      paddingVertical: 10,
+      marginHorizontal: 5,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+
+    botaoVermelho: {
+      flex: 1,
+      borderRadius: 20,
+      borderColor: "#F0292E",
+      borderWidth: 2,
+      borderRadius: 12,
+      paddingVertical: 10,
+      marginHorizontal: 5,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    textBotaoVerm: {
+      color: "#F0292E",
+      fontSize: 16,
+    },
+    textoBotaoVerd: {
+      color: "#61C840",
+      fontSize: 16,
     },
   });
