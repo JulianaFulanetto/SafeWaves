@@ -11,8 +11,13 @@ const MonitoramentoScreen = () => {
     <View style={styles.container}>
       <AntDesign style={styles.Flecha} name="arrow-left" size={30} color="#244F7E" />
       <Text style={styles.Title}>SafeWaves</Text>
-      <Text style={styles.SubTitle}>Relatório</Text>
+      <Text style={styles.SubTitle}>Monitoramento</Text>
       <View style={styles.line} />
+
+      <View style={styles.cardGrande}>
+
+
+      </View>
     </View>
   );
 }
@@ -51,8 +56,17 @@ const createStyles = (theme) =>
       marginHorizontal: 0, // Margem lateral para ajustar o comprimento da linha
       borderBottomWidth: 0.5, // Espessura da linha
       width: "100%",
+      height:1,
      
       backgroundColor: theme.border,
+    },
+    cardGrande:{
+backgroundColor:theme.cardGrande,
+width:370,
+height:325,
+marginTop:20,
+margin:20,
+borderRadius:20,
     },
   });
 
