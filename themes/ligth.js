@@ -8,4 +8,10 @@ export const lightTheme = {
   shadow:"#4A7FA7",
   number:"#081E46",
   icons: "#A8D0EF",
+  vermelho: "#380D1C",
+  verde: "#143725",
+  azul: "#17314B",
+  bordaverm: "#B3050B",
+  bordaverd: "#700407",
+  bordaazul: "#2A4C66",
 };

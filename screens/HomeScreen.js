@@ -144,13 +144,14 @@ const createStyles = (theme) =>
       height: 129,
       borderRadius: 20,
       backgroundColor: theme.buttonPrincipal,
-      marginHorizontal: 5, // espaçamento entre os cards
+      marginHorizontal: 15, // espaçamento entre os cards
       alignItems: "center",
       justifyContent: "center",
       shadowRadius: { width: 0, height: 12 },
       shadowOpacity: 0.58,
       shadowRadius: 16,
       elevation: 10,
+
     },
     newCard: {
       backgroundColor: theme.buttonSecundario,
@@ -159,7 +160,7 @@ const createStyles = (theme) =>
       borderRadius: 20,
       borderColor: theme.border,
       borderWidth: 1,
-      marginHorizontal: 5, // espaçamento entre os cards
+      marginHorizontal: 15, // espaçamento entre os cards
       alignItems: "center",
       justifyContent: "center",
       shadowRadius: { width: 0, height: 12 },
@@ -191,9 +192,9 @@ const createStyles = (theme) =>
       borderRadius: 20,
       borderColor: theme.border,
       borderWidth: 1,
-      width: 375,
+      width: 355,
       height: 110,
-      marginHorizontal: 5,
+      marginHorizontal: 15,
       marginTop: 40,
       shadowRadius: { width: 0, height: 12 },
       shadowOpacity: 0.58,
@@ -257,9 +258,9 @@ const createStyles = (theme) =>
       borderRadius: 20,
       borderColor: theme.border,
       borderWidth: 1,
-      width: 375,
+      width: 355,
       height: 110,
-      marginHorizontal: 5,
+      marginHorizontal: 15,
       marginTop: 30,
       shadowRadius: { width: 0, height: 12 },
       shadowOpacity: 0.58,

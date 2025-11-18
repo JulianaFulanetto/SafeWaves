@@ -7,5 +7,11 @@ export const darkTheme = {
   buttonSecundario: "#041228",
   shadow:"#00000",
   number:"#4A7FA7",
-  incons:"#021024"
+  icons:"#061931",
+  vermelho: "#380D1C",
+  verde: "#143725",
+  azul: "#17314B",
+  bordaverm: "#700407",
+  bordaverd: "#3B8D28",
+  bordaazul: "#4A7FA7",
 };
