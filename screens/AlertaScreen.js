@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { TouchableOpacity, Alert } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 
 import { useThemeStyles } from "../hooks/useThemeStyles";
+import { TextInput } from "react-native-gesture-handler";
 
 
 export default function AlertaScreen() {
@@ -38,7 +40,15 @@ export default function AlertaScreen() {
       </View>
 
             <View style={styles.acoesRap}>
-              <Text style={styles.textAcoes}>Ações Rápidas</Text>
+
+              <Ionicons name="create-outline" size={24} color="#FFFFFF" style={styles.searchIcon}/>
+              <View style={styles.seachContainer}>
+            <TextInput
+          style={styles.searchBar}
+          placeholder="Pesquisar alertas..."
+          placeholderTextColor="#999"
+        />
+        </View>
       
               <View style={styles.rowButtons}>
                 <TouchableOpacity
@@ -47,7 +57,9 @@ export default function AlertaScreen() {
                   style={styles.botaoVermelho}
                   onPress={() => Alert.alert("!")}
                 >
-                  <Text style={styles.textBotaoVerm}>Emergência</Text>
+                  <Text style={styles.textBotaoVerm}>
+                  <Ionicons name="notifications-outline" size={15} color="#FFFFFF"
+                   />  Emergência</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -227,17 +239,42 @@ rowButtons: {
 },
 
 botaoVermelho: {
-  flex: 1,
+  width: "100%",
   backgroundColor: theme.vermelho,
-  borderRadius: 20,
   borderRadius: 100,
   paddingVertical: 10,
+  margin: 0,
   alignItems: "center",
   justifyContent: "center",
+  alignSelf: "center",
+  top: 12,
 },
+
 textBotaoVerm: {
   color: "#FFFFFF",
   fontSize: 12,
 },
+
+searchBar: {
+  borderRadius: 10,
+  margin: 10,
+  left: 60,
+  marginTop: 20,
+  marginBottom: 1,
+  borderColor: "#9BA1A9",
+  borderWidth: 1,
+  width: "75%",
+  paddingHorizontal: 15,
+  paddingVertical: 5,
+  marginBottom: 10,
+  fontSize: 10,
+},
+
+
+searchIcon: {
+position: "absolute",
+top: 20,
+left: 20,
+}
 });
 

@@ -1,6 +1,7 @@
 export const darkTheme = {
   background: "#021024",
   card: "#05162F",
+  card2: "#173A77",
   text: "#B3CFE5",
   border: "#091E47",
   buttonPrincipal: "#102E50",
@@ -14,4 +15,4 @@ export const darkTheme = {
   bordaverm: "#700407",
   bordaverd: "#3B8D28",
   bordaazul: "#4A7FA7",
-};
+};r
