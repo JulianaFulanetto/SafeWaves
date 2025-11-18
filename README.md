@@ -63,16 +63,37 @@ O SafeWaves é estruturado em *MVC (Model-View-Controller)*, permitindo organiza
 
 ---
 
-## Instalação
+## 🛠 Instalação e Execução do Projeto
 
-### 📦 Pré-requisitos
-- Node.js + npm (ou yarn)
+### 📌 Pré-requisitos
+Certifique-se de ter instalado:
 
-### 💻 Instalação
+- **Node.js 18+**
+- **npm** ou **yarn**
+- **Git**
+- **Expo Go** no celular *(Android/iOS)*
+
+Verifique:
 ```bash
-git clone [URL_DO_SEU_REPOSITORIO]
-cd nome-do-repositorio
-npm install
-# ou
-yarn install
+node -v
+npm -v
+```
 
+### 🚀 Rodando o projeto localmente
+```bash
+# Clone o repositório
+git clone https://github.com/JulianaFulanetto/SafeWaves.git
+
+# Acesse a pasta
+cd SafeWaves
+
+# Instale as dependências
+npm install
+
+# Inicie o projeto
+npx expo start
+```
+### 📦 Build para produção
+```bash
+npx expo export
+```
