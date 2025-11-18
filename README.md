@@ -63,6 +63,16 @@ O SafeWaves é estruturado em *MVC (Model-View-Controller)*, permitindo organiza
 
 ---
 
-## ✨ Agradecimentos
+## Instalação
 
-A todos que contribuíram direta ou indiretamente para o desenvolvimento deste projeto.
+### 📦 Pré-requisitos
+- Node.js + npm (ou yarn)
+
+### 💻 Instalação
+```bash
+git clone [URL_DO_SEU_REPOSITORIO]
+cd nome-do-repositorio
+npm install
+# ou
+yarn install
+
