@@ -79,7 +79,23 @@ export default function HomeScreen({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+
+      
+      <View style={styles.ativRapidas}>
+        <Text style={styles.tituloAtiv}>
+          Atividade Recente</Text>
+        <Text style={styles.textAtiv}>
+        <Text style={styles.corBolinha1}>●  </Text>
+        Alerta Detectado  -  Ativado há 2min</Text>
+        <Text style={styles.textAtiv}>
+        <Text style={styles.corBolinha2}>●  </Text>
+          Movimento Detectado  -  Piscina-15min</Text>
+        <Text style={styles.textAtiv}>
+        <Text style={styles.corBolinha3}>●  </Text>
+          Novo Vizinho Conectado  -  Maria Silva-1h</Text>
+    
+        </View>
+      </View>
   );
 }
 
@@ -120,6 +136,9 @@ const createStyles = (theme) =>
       justifyContent: "space-between",
       marginTop: 20,
     },
+
+//--------------------------------------------------------------------------
+
     card: {
       flex: 1,
       height: 129,
@@ -202,7 +221,7 @@ const createStyles = (theme) =>
     botaoVerde: {
       flex: 1,
       borderRadius: 20,
-      borderColor: "#61C840",
+      borderColor: "#46A329",
       borderWidth: 2,
       borderRadius: 12,
       paddingVertical: 10,
@@ -214,7 +233,7 @@ const createStyles = (theme) =>
     botaoVermelho: {
       flex: 1,
       borderRadius: 20,
-      borderColor: "#F0292E",
+      borderColor: "#B4060C",
       borderWidth: 2,
       borderRadius: 12,
       paddingVertical: 10,
@@ -223,11 +242,50 @@ const createStyles = (theme) =>
       justifyContent: "center",
     },
     textBotaoVerm: {
-      color: "#F0292E",
+      color: "#B4060C",
       fontSize: 16,
     },
     textoBotaoVerd: {
-      color: "#61C840",
+      color: "#46A329",
       fontSize: 16,
     },
+  
+//--------------------------------------------------------------------------------
+
+    ativRapidas: {
+      backgroundColor: theme.buttonSecundario,
+      borderRadius: 20,
+      borderColor: theme.border,
+      borderWidth: 1,
+      width: 375,
+      height: 110,
+      marginHorizontal: 5,
+      marginTop: 30,
+      shadowRadius: { width: 0, height: 12 },
+      shadowOpacity: 0.58,
+      shadowRadius: 16,
+      elevation: 10,
+      shadowColor: theme.shadowColor,
+    },
+    tituloAtiv: {
+      margin: 10,
+      color: theme.text,
+    },
+    textAtiv:{
+      marginStart: 10,
+      marginBottom:5,
+      color: theme.text,
+      fontSize: 9,
+
+    },
+    corBolinha1:{
+      color: "#46A329",
+    },
+    corBolinha2:{
+      color: "#B4060C"
+    },
+    corBolinha3:{
+      color: "#4A7FA7"
+    },
+
   });
