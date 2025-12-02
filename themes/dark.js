@@ -1,5 +1,6 @@
 export const darkTheme = {
   background: "#021024",
+  title: "#244F7E",
   card: "#05162F",
   card2: "#173A77",
   text: "#B3CFE5",
@@ -15,4 +16,8 @@ export const darkTheme = {
   bordaverm: "#700407",
   bordaverd: "#3B8D28",
   bordaazul: "#4A7FA7",
-};r
+  notifverde: "#4CAF50AA",
+  notifvermelho: "#E53935AA",
+  notifazul: "#1E88E5AA",
+  tabbar: "#A8D0EF"
+};

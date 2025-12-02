@@ -11,11 +11,13 @@ import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useThemeStyles } from "../hooks/useThemeStyles"; // Importa o hook personalizado
+
 export default function HomeScreen({ navigation }) {
   const styles = createStyles(useThemeStyles());
 
   return (
     <View style={styles.container}>
+    <View style={styles.top}>
       <AntDesign
         style={styles.Flecha}
         name="arrow-left"
@@ -25,6 +27,7 @@ export default function HomeScreen({ navigation }) {
       <Text style={styles.Title}>SafeWaves</Text>
       <Text style={styles.SubTitle}>Início</Text>
       <View style={styles.line} />
+    </View>
 
       <View style={styles.row}>
         {/* Card 1 - Navega para AlertaScreen */}
@@ -105,6 +108,9 @@ const createStyles = (theme) =>
       backgroundColor: theme.background,
       flex: 1,
     },
+    top: {
+      backgroundColor: theme.buttonSecundario,
+    },
     Flecha: {
       position: "absolute", // Permite posicionar a seta de forma absoluta
       top: 70, // Ajuste a posição vertical da seta
@@ -116,20 +122,20 @@ const createStyles = (theme) =>
       marginLeft: 65,
       fontSize: 30,
       fontWeight: "bold",
-      color: "#244F7E",
+      color: theme.title
     },
     SubTitle: {
       marginTop: 0,
       marginLeft: 65,
       fontSize: 16,
       opacity: 0.5,
-      color: "#244F7E",
+      color: theme.title
     },
     line: {
       marginTop: 10, // Espaço entre os textos e a linha
       marginHorizontal: 0, // Margem lateral para ajustar o comprimento da linha
-      borderBottomWidth: 0.5, // Espessura da linha
-      borderBottomColor: "#244F7E", // Cor da linha
+      borderBottomWidth: 1, // Espessura da linha
+      borderBottomColor: theme.title, // Cor da linha
     },
     row: {
       flexDirection: "row",
@@ -141,6 +147,7 @@ const createStyles = (theme) =>
 
     card: {
       flex: 1,
+      marginTop: 20,
       height: 129,
       borderRadius: 20,
       backgroundColor: theme.buttonPrincipal,
@@ -150,6 +157,7 @@ const createStyles = (theme) =>
       shadowRadius: { width: 0, height: 12 },
       shadowOpacity: 0.58,
       shadowRadius: 16,
+      shadowColor: theme.shadow,
       elevation: 10,
 
     },
@@ -158,7 +166,7 @@ const createStyles = (theme) =>
       flex: 1,
       height: 129,
       borderRadius: 20,
-      borderColor: theme.border,
+      borderColor: theme.buttonSecundario,
       borderWidth: 1,
       marginHorizontal: 15, // espaçamento entre os cards
       alignItems: "center",
@@ -166,6 +174,7 @@ const createStyles = (theme) =>
       shadowRadius: { width: 0, height: 12 },
       shadowOpacity: 0.58,
       shadowRadius: 16,
+      shadowColor: theme.shadow,
       elevation: 10,
     },
     nomeCard: {
@@ -187,12 +196,13 @@ const createStyles = (theme) =>
       fontSize: 11,
       height: 25,
     },
+    
     acoesRap: {
       backgroundColor: theme.buttonSecundario,
       borderRadius: 20,
-      borderColor: theme.border,
+      borderColor: theme.buttonSecundario,
       borderWidth: 1,
-      width: 355,
+      width: 400,
       height: 110,
       marginHorizontal: 15,
       marginTop: 40,
@@ -256,10 +266,10 @@ const createStyles = (theme) =>
     ativRapidas: {
       backgroundColor: theme.buttonSecundario,
       borderRadius: 20,
-      borderColor: theme.border,
+      borderColor: theme.buttonSecundario,
       borderWidth: 1,
-      width: 355,
-      height: 110,
+      width: 400,
+      height: 150,
       marginHorizontal: 15,
       marginTop: 30,
       shadowRadius: { width: 0, height: 12 },
@@ -268,15 +278,17 @@ const createStyles = (theme) =>
       elevation: 10,
       shadowColor: theme.shadowColor,
     },
+
     tituloAtiv: {
       margin: 10,
       color: theme.text,
     },
     textAtiv:{
+      marginTop: 4,
       marginStart: 10,
       marginBottom:5,
       color: theme.text,
-      fontSize: 9,
+      fontSize: 11,
 
     },
     corBolinha1:{
@@ -288,5 +300,4 @@ const createStyles = (theme) =>
     corBolinha3:{
       color: "#4A7FA7"
     },
-
   });
