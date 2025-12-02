@@ -11,6 +11,7 @@ import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useThemeStyles } from "../hooks/useThemeStyles"; // Importa o hook personalizado
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function HomeScreen({ navigation }) {
   const styles = createStyles(useThemeStyles());
@@ -62,6 +63,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.subNomeCard}>Conectados</Text>
         </View>
       </View>
+
 
       <View style={styles.acoesRap}>
         <Text style={styles.textAcoes}>Ações Rápidas</Text>
