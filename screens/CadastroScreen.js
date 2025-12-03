@@ -53,6 +53,8 @@ export default function CadastroScreen({ navigation }) {
         placeholder="Nome"
         value={nome}
         onChangeText={setNome}
+      placeholderTextColor= "#d9d9d9"
+
       />
 
       <TextInput
@@ -61,6 +63,8 @@ export default function CadastroScreen({ navigation }) {
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
+      placeholderTextColor= "#d9d9d9"
+
       />
 
       <TextInput
@@ -69,6 +73,8 @@ export default function CadastroScreen({ navigation }) {
         secureTextEntry
         value={senha}
         onChangeText={setSenha}
+      placeholderTextColor= "#d9d9d9"
+
       />
 
       {/* Mensagem de erro */}
@@ -116,7 +122,7 @@ const createStyles = (theme) =>
       marginBottom: 15,
       color: theme.background,
       fontSize: 16,
-     placeholderTextColor: theme.background
+     placeholderTextColor: "#ffff"
     },
     button: {
       width: "100%",
