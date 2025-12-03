@@ -19,6 +19,8 @@ import ImagemScreen from "./screens/ImagemScreen";
 import { useThemeStyles } from "./hooks/useThemeStyles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+import LoginScreen from "./screens/LoginScreen";
+import CadastroScreen from "./screens/CadastroScreen";
 import MonitoramentoScreen from "./screens/MonitoramentoScreen";
 import RelatorioScreen from "./screens/RelatorioScreen";
 import ConfiguracaoScreen from "./screens/ConfiguracaoScreen";
@@ -46,7 +48,6 @@ function HomeStack() {
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="AlertaScreen" component={AlertaScreen} />
       <Stack.Screen name="ImagemScreen" component={ImagemScreen} />
-
     </Stack.Navigator>
   )
 }
@@ -67,34 +68,44 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <NavigationContainer>
-        <Tab.Navigator
-          style={styles.tab}
-          screenOptions={{ 
-            headerShown: false,
-            tabBarActiveTintColor: theme.buttonSecundario,
-            tabBarInactiveTintColor: theme.background,
-            tabBarHideOnKeyboard: true,
-            tabBarActiveBackgroundColor: theme.buttonSecundario,
-            tabBarInactiveBackgroundColor: theme.background,
-            animation: "shift",
-            borderTopWidth: 5,  // remove linha superior
-
-            tabBarStyle: {
-              backgroundColor: theme.background,
-                elevation: 0,       // remove sombra no Android
-                shadowOpacity: 0,   // remove sombra no iOS
-                borderTopWidth: 2,  // remove linha superior
-                borderTopColor: theme.title
-            },
-            tabBarItemStyle: {
-              borderTopWidth: 0,
-              borderTopColor: "#ffff",
-            },
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {/* Telas de Login e Cadastro */}
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Cadastro" component={CadastroScreen} />
+        <Stack.Screen name="Main">
+         {(props) => <MainTabs {...props} theme={theme} />}
+        </Stack.Screen>
 
 
-          }}
-        >
+        {/* Navegação principal com abas */}
+      </Stack.Navigator>
+    </NavigationContainer>
+  </GestureHandlerRootView>
+);
+}
+
+// ---------- NAVEGAÇÃO COM ABAS ----------
+function MainTabs({ theme }) {
+  const styles = createStyles(theme);
+return (
+  <Tab.Navigator
+    style={styles.tab}
+    screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: theme.buttonSecundario,
+      tabBarInactiveTintColor: theme.background,
+      tabBarHideOnKeyboard: true,
+      tabBarActiveBackgroundColor: theme.buttonSecundario,
+      tabBarInactiveBackgroundColor: theme.background,
+      animation: "shift",
+      borderTopWidth: 5, // remove linha superior
+
+      tabBarStyle: {
+        backgroundColor: theme.background,
+      },
+    }}
+  >
           <Tab.Screen
             name="Home"
             component={HomeStack} // ← Aqui usamos o Stack
@@ -157,9 +168,7 @@ export default function App() {
             }}
           />
         </Tab.Navigator>
-      </NavigationContainer>
-    </GestureHandlerRootView>
-  );
+);
 }
 // Função para criar estilos dinâmicos com base no tema
 const createStyles = (theme) =>
