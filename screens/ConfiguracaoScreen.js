@@ -41,7 +41,7 @@ export default function ConfiguracaoScreen() {
       <Text
         onPress={() => setPortaTravada(!portaTravada)}
         style={{
-          backgroundColor: theme.text,
+          backgroundColor: theme.buttonPrincipal,
           marginTop: 10,
           paddingHorizontal: 20,
           paddingVertical: 8,
@@ -69,7 +69,7 @@ export default function ConfiguracaoScreen() {
       <Text
         onPress={() => setCortinaAberta(!cortinaAberta)}
         style={{
-          backgroundColor: theme.text,
+          backgroundColor: theme.buttonPrincipal,
           marginTop: 10,
           paddingHorizontal: 20,
           paddingVertical: 8,
@@ -96,7 +96,7 @@ export default function ConfiguracaoScreen() {
       <Text
         onPress={() => setluzDesligada(!luzDesligada)}
         style={{
-          backgroundColor: theme.text,
+          backgroundColor: theme.buttonPrincipal,
           marginTop: 10,
           paddingHorizontal: 20,
           paddingVertical: 8,

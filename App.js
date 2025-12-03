@@ -28,6 +28,8 @@ import RotaScreen from "./screens/RotaScreen";
 import ComunidadeScreen from "./screens/ComunidadeScreen";
 
 import ComunidadeChatScreen from "./screens/ComunidadeChatScreen";
+import InstituicaoScreen from "./screens/InstituicaoScreen";
+import RedeScreen from "./screens/RedeScreen";
 
 //icons
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -57,6 +59,8 @@ function ComunidadeStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="ComunidadeScreen" component={ComunidadeScreen} />
       <Stack.Screen name="ComunidadeChatScreen" component={ComunidadeChatScreen} />
+      <Stack.Screen name="InstituicaoScreen" component={InstituicaoScreen} />
+      <Stack.Screen name="RedeScreen" component={RedeScreen} />
     </Stack.Navigator>
   )
 }

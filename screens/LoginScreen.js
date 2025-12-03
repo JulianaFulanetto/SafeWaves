@@ -105,7 +105,7 @@ const createStyles = (theme) =>
       borderRadius: 10,
       padding: 15,
       marginBottom: 15,
-      color: theme.background,
+      color: theme.text,
       fontSize: 16,
       placeholderTextColor: "#ffff"
     },

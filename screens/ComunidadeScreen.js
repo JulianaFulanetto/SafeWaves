@@ -56,11 +56,16 @@ export default function CommunityScreen({ navigation }) {
 </TouchableOpacity>
 
 
-          <TouchableOpacity style={styles.filterBtn}>
+          <TouchableOpacity 
+          style={styles.filterBtn}
+  onPress={() => navigation.navigate("InstituicaoScreen")}
+  >
             <Text style={styles.filterText}>Instituições</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.filterBtn}>
+          <TouchableOpacity style={styles.filterBtn}
+          onPress={() => navigation.navigate("RedeScreen")}
+          >            
             <Text style={styles.filterText}>Rede de confiança</Text>
           </TouchableOpacity>
         </View>
