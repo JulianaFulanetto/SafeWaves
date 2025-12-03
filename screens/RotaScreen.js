@@ -4,6 +4,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import MapView, { Marker } from "react-native-maps";
 import { Feather } from "@expo/vector-icons";
 import { useThemeStyles } from "../hooks/useThemeStyles";
+import { ScrollView } from "react-native-gesture-handler";
 
 const routes = [
   {
@@ -74,6 +75,7 @@ export default function RotaScreen() {
         )}
       />
 
+<ScrollView>
       {/* ------ TITULO DA ROTA ------ */}
       <View style={styles.card}>
         <Text style={styles.subtitle}>{selectedRoute.name}</Text>
@@ -118,6 +120,7 @@ export default function RotaScreen() {
           </Text>
         ))}
       </View>
+    </ScrollView>
     </View>
   );
 }

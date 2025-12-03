@@ -149,7 +149,7 @@ const createStyles = (theme) =>
 
     card: {
       flex: 1,
-      marginTop: 20,
+      marginTop: 10,
       height: 129,
       borderRadius: 20,
       backgroundColor: theme.buttonPrincipal,
@@ -204,9 +204,10 @@ const createStyles = (theme) =>
       borderRadius: 20,
       borderColor: theme.buttonSecundario,
       borderWidth: 1,
-      width: 400,
+      width: 380,
       height: 110,
       marginHorizontal: 15,
+      
       marginTop: 40,
       shadowRadius: { width: 0, height: 12 },
       shadowOpacity: 0.58,
@@ -270,7 +271,7 @@ const createStyles = (theme) =>
       borderRadius: 20,
       borderColor: theme.buttonSecundario,
       borderWidth: 1,
-      width: 400,
+      width: 380,
       height: 150,
       marginHorizontal: 15,
       marginTop: 30,

@@ -7,17 +7,18 @@ const myStorage = {
 };
 
 const client = new Client({
-  uri: "ws://broker.hivemq.com:8000/mqtt",
+  uri: "ws://broker.hivemq.com:8884/mqtt", // Alterado para WebSocket seguro
   clientId: "rn_safeWaves_" + Math.random(),
   storage: myStorage,
 });
 
 export default {
   connect: (onMessage) => {
-    return client.connect()
+    return client
+      .connect()
       .then(() => {
-        console.log("MQTT conectado");
-        return client.subscribe("api/alertas/novo");  
+        console.log("MQTT conectado via WebSocket seguro");
+        return client.subscribe("api/alertas/novo");
       })
       .then(() => {
         console.log("Inscrito no tópico api/alertas/novo");
@@ -28,5 +29,5 @@ export default {
         });
       })
       .catch((err) => console.log("Erro MQTT:", err));
-  }
+  },
 };
