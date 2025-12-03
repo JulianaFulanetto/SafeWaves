@@ -149,6 +149,12 @@ const createStyles = (theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
+    numVerm: {
+    color: theme.bordaverm,
+    },
+    subNomeCardVerm:{
+      color: theme.bordaverm,
+    },
     green: {
       backgroundColor: theme.verde,
       flex: 1,
@@ -160,6 +166,12 @@ const createStyles = (theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
+    numVerd: {
+      color: theme.bordaverd,
+      },
+      subNomeCardVerd:{
+        color: theme.bordaverd,
+      },
     blue: {
       backgroundColor: theme.azul,
       flex: 1,
@@ -171,6 +183,12 @@ const createStyles = (theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
+    numAzul: {
+      color: theme.bordaazul,
+      },
+      subNomeCardAzul:{
+        color: theme.bordaazul,
+      },
     acoesRap: {
       backgroundColor: theme.buttonSecundario,
       borderRadius: 20,
