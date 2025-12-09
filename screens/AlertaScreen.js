@@ -101,9 +101,8 @@ export default function AlertaScreen({ navigation }) {
 const createStyles = (theme) =>
   StyleSheet.create({
     container: {
-      backgroundColor: theme.background,
       flex: 1,
-      padding: 20,
+      backgroundColor: theme.background,
     },
     top: {
       backgroundColor: theme.buttonSecundario,
@@ -150,9 +149,9 @@ const createStyles = (theme) =>
       justifyContent: "center",
     },
     numVerm: {
-    color: theme.bordaverm,
+      color: theme.bordaverm,
     },
-    subNomeCardVerm:{
+    subNomeCardVerm: {
       color: theme.bordaverm,
     },
     green: {
@@ -168,10 +167,10 @@ const createStyles = (theme) =>
     },
     numVerd: {
       color: theme.bordaverd,
-      },
-      subNomeCardVerd:{
-        color: theme.bordaverd,
-      },
+    },
+    subNomeCardVerd: {
+      color: theme.bordaverd,
+    },
     blue: {
       backgroundColor: theme.azul,
       flex: 1,
@@ -185,10 +184,10 @@ const createStyles = (theme) =>
     },
     numAzul: {
       color: theme.bordaazul,
-      },
-      subNomeCardAzul:{
-        color: theme.bordaazul,
-      },
+    },
+    subNomeCardAzul: {
+      color: theme.bordaazul,
+    },
     acoesRap: {
       backgroundColor: theme.buttonSecundario,
       borderRadius: 20,
