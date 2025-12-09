@@ -16,10 +16,17 @@ export default function AlertaScreen({ navigation }) {
   const [alertas, setAlertas] = useState([]); // Lista de alertas recebidos via MQTT
 
   useEffect(() => {
-    // Conecta ao MQTT e recebe mensagens
+    let isMounted = true;
+
     mqttService.connect((message) => {
-      setAlertas((prev) => [...prev, message]); // Adiciona a mensagem recebida à lista de alertas
+      if (isMounted) {
+        setAlertas((prev) => [...prev, message]);
+      }
     });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
