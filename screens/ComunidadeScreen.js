@@ -1,4 +1,3 @@
-
 import {
   View,
   Text,
@@ -11,23 +10,22 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
 import { useThemeStyles } from "../hooks/useThemeStyles";
 
-
 export default function CommunityScreen({ navigation }) {
   const styles = createStyles(useThemeStyles());
 
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-      <AntDesign
-        style={styles.Flecha}
-        name="arrow-left"
-        size={30}
-        color="#244F7E"
-      />
+        <AntDesign
+          style={styles.Flecha}
+          name="arrow-left"
+          size={30}
+          color="#244F7E"
+        />
 
-      <Text style={styles.Title}>SafeWaves</Text>
-      <Text style={styles.SubTitle}>Comunidade</Text>
-      <View style={styles.line} />
+        <Text style={styles.Title}>SafeWaves</Text>
+        <Text style={styles.SubTitle}>Comunidade</Text>
+        <View style={styles.line} />
       </View>
 
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
@@ -49,24 +47,24 @@ export default function CommunityScreen({ navigation }) {
           </TouchableOpacity>
 
           <TouchableOpacity
-  style={styles.filterBtn}
-  onPress={() => navigation.navigate("ComunidadeChatScreen")}
->
-  <Text style={styles.filterText}>Chat Comunitário</Text>
-</TouchableOpacity>
+            style={styles.filterBtn}
+            onPress={() => navigation.navigate("ComunidadeChatScreen")}
+          >
+            <Text style={styles.filterText}>Chat Comunitário</Text>
+          </TouchableOpacity>
 
-
-          <TouchableOpacity 
-          style={styles.filterBtn}
-  onPress={() => navigation.navigate("InstituicaoScreen")}
-  >
+          <TouchableOpacity
+            style={styles.filterBtn}
+            onPress={() => navigation.navigate("InstituicaoScreen")}
+          >
             <Text style={styles.filterText}>Instituições</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.filterBtn}
-          onPress={() => navigation.navigate("RedeScreen")}
-          >            
-            <Text style={styles.filterText}>Rede de confiança</Text>
+          <TouchableOpacity
+            style={styles.filterBtn}
+            onPress={() => navigation.navigate("RedeScreen")}
+          >
+            <Text style={styles.filterText}>Rede</Text>
           </TouchableOpacity>
         </View>
 
@@ -84,10 +82,7 @@ export default function CommunityScreen({ navigation }) {
         <View style={styles.userCard}>
           <View style={styles.userHeader}>
             {/* FOTO */}
-            <Image
-              style={styles.userImg}
-              
-            />
+            <Image style={styles.userImg} />
 
             {/* INFO */}
             <View style={styles.userInfo}>
@@ -124,9 +119,7 @@ export default function CommunityScreen({ navigation }) {
         {/* SEGUNDO VIZINHO */}
         <View style={styles.userCard}>
           <View style={styles.userHeader}>
-            <Image
-              style={styles.userImg}
-            />
+            <Image style={styles.userImg} />
 
             <View style={styles.userInfo}>
               <Text style={styles.userName}>Maria Santos</Text>
@@ -167,7 +160,7 @@ const createStyles = (theme) =>
       flex: 1,
     },
     top: {
-      backgroundColor: theme.buttonSecundario
+      backgroundColor: theme.buttonSecundario,
     },
 
     Flecha: {
@@ -177,19 +170,19 @@ const createStyles = (theme) =>
       fontSize: 30,
     },
 
-       Title: {
+    Title: {
       marginTop: 60,
       marginLeft: 65,
       fontSize: 30,
       fontWeight: "bold",
-      color: theme.title
+      color: theme.title,
     },
     SubTitle: {
       marginTop: 0,
       marginLeft: 65,
       fontSize: 16,
       opacity: 0.5,
-      color: theme.title
+      color: theme.title,
     },
     line: {
       marginTop: 10, // Espaço entre os textos e a linha
@@ -208,7 +201,6 @@ const createStyles = (theme) =>
       backgroundColor: theme.buttonSecundario,
       borderRadius: 15,
       padding: 15,
-
     },
 
     cardTopTitle: {
@@ -237,7 +229,6 @@ const createStyles = (theme) =>
       paddingHorizontal: 12,
       paddingVertical: 6,
       borderRadius: 12,
-
     },
 
     filterBtnSelected: {
@@ -253,9 +244,9 @@ const createStyles = (theme) =>
     },
 
     filterTextWhite: {
-       color: "#fff", 
-       fontSize: 12
-     },
+      color: "#fff",
+      fontSize: 12,
+    },
 
     /* ------------------------ TITLE + BUTTON -------------------------- */
     sectionHeader: {
@@ -272,11 +263,10 @@ const createStyles = (theme) =>
     },
 
     inviteBtn: {
-      backgroundColor: theme.card,
+      backgroundColor: theme.buttonSecundario,
       paddingHorizontal: 10,
       paddingVertical: 6,
-      borderRadius: 12,
-
+      borderRadius: 2,
     },
 
     inviteText: {
@@ -292,6 +282,13 @@ const createStyles = (theme) =>
       marginTop: 20,
     },
 
+    // userImg: {
+    //   width: 45,
+    //   height: 45,
+    //   borderRadius: 25,
+
+    // },
+
     userHeader: {
       flexDirection: "row",
       alignItems: "center",
@@ -302,6 +299,7 @@ const createStyles = (theme) =>
       height: 45,
       borderRadius: 25,
       marginRight: 10,
+      backgroundColor: "#bcd", // temporário
     },
 
     userInfo: {
@@ -379,7 +377,6 @@ const createStyles = (theme) =>
       alignItems: "center",
       gap: 5,
       marginRight: 8,
-      
     },
 
     callBtn: {
@@ -392,7 +389,6 @@ const createStyles = (theme) =>
       alignItems: "center",
       gap: 5,
       marginLeft: 8,
-      
     },
 
     actionText: {
