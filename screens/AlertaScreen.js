@@ -98,7 +98,8 @@ export default function AlertaScreen({ navigation }) {
       </Text>
       {alertas.map((alerta, index) => (
         <View key={index} style={styles.alertItem}>
-          <Text style={styles.alertText}>{alerta}</Text>
+          <Text style={styles.alertText}>Tipo: {alerta.tipo}</Text>
+          <Text style={styles.alertText}>{alerta.mensagem}</Text>
         </View>
       ))}
     </View>

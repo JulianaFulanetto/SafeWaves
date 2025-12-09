@@ -19,12 +19,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
     <View style={styles.top}>
-      <AntDesign
-        style={styles.Flecha}
-        name="arrow-left"
-        size={30}
-        color="#244F7E"
-      />
+
       <Text style={styles.Title}>SafeWaves</Text>
       <Text style={styles.SubTitle}>Início</Text>
       <View style={styles.line} />
@@ -113,22 +108,16 @@ const createStyles = (theme) =>
     top: {
       backgroundColor: theme.buttonSecundario,
     },
-    Flecha: {
-      position: "absolute", // Permite posicionar a seta de forma absoluta
-      top: 70, // Ajuste a posição vertical da seta
-      left: 20, // Ajuste a posição horizontal da seta
-      fontSize: 30,
-    },
     Title: {
       marginTop: 60,
-      marginLeft: 65,
+      marginLeft: 20,
       fontSize: 30,
       fontWeight: "bold",
       color: theme.title
     },
     SubTitle: {
       marginTop: 0,
-      marginLeft: 65,
+      marginLeft: 20,
       fontSize: 16,
       opacity: 0.5,
       color: theme.title
