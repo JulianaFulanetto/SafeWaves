@@ -238,6 +238,7 @@ const createStyles = (theme) =>
     /* FILTROS */
     filterRow: {
       marginTop: 15,
+      flexWrap: "wrap",
       flexDirection: "row",
       gap: 8,
     },

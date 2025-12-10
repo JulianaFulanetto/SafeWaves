@@ -1,152 +1,263 @@
-
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+} from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useThemeStyles } from "../hooks/useThemeStyles"; // Importa o hook personalizado
-import { useState } from "react";
+import { useState, useRef } from "react";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function ConfiguracaoScreen() {
-  const styles = createStyles(useThemeStyles());
   const theme = useThemeStyles();
+  const styles = createStyles(useThemeStyles());
+  const [portaTravada, setPortaTravada] = useState(true);
+  const [cortinaAberta, setCortinaAberta] = useState(false);
+  const [luzLigada, setLuzLigada] = useState(false);
 
+  // Referências de animação
+  const portaAnim = useRef(new Animated.Value(0)).current;
+  const cortinaAnim = useRef(new Animated.Value(0)).current;
+  const luzAnim = useRef(new Animated.Value(0)).current;
 
- const [portaTravada, setPortaTravada] = useState(true);
- const [cortinaAberta, setCortinaAberta] = useState(true);
- const [luzDesligada, setluzDesligada] = useState(true);
+  // Função para animar a porta
+  const togglePorta = () => {
+    Animated.timing(portaAnim, {
+      toValue: portaTravada ? 1 : 0,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+    setPortaTravada(!portaTravada);
+  };
 
+  // Função para animar a cortina
+  const toggleCortina = () => {
+    Animated.timing(cortinaAnim, {
+      toValue: cortinaAberta ? 0 : 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+    setCortinaAberta(!cortinaAberta);
+  };
 
+  // Função para animar a luz
+  const toggleLuz = () => {
+    Animated.timing(luzAnim, {
+      toValue: luzLigada ? 1 : 0,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+    setLuzLigada(!luzLigada);
+  };
 
   return (
     <View style={styles.container}>
-        <View style={styles.top}>
-      <AntDesign style={styles.Flecha} name="arrow-left" size={30} color="#244F7E" />
-      <Text style={styles.Title}>SafeWaves</Text>
-      <Text style={styles.SubTitle}>Configuração</Text>
-      <View style={styles.line} />
-              </View>
+      <View style={styles.top}>
+        <AntDesign
+          style={styles.Flecha}
+          name="arrow-left"
+          size={30}
+          color="#244F7E"
+        />
+        <Text style={styles.Title}>SafeWaves</Text>
+        <Text style={styles.SubTitle}>Configuração</Text>
+        <View style={styles.line} />
+      </View>
 
-        <View style={styles.control}>
-        <Text style={styles.tituloControl}>
-          Controle de Dispositivos</Text>
+      <View style={styles.control}>
+        <Text style={styles.tituloControl}>Controle de Dispositivos</Text>
 
-<View style={styles.card1}>
-  <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "90%" }}>
-    <View>
-      <Text style={{ fontWeight: "bold", color: theme.text, paddingHorizontal: 15, marginTop: 10 }}>Porta Principal</Text>
-      <Text style={{ color: portaTravada ? "green" : "red", paddingHorizontal: 15 }}>
-        {portaTravada ? "Travado" : "Destravado"}
-      </Text>
-    </View>
-
-    <View>
-      <Text
-        onPress={() => setPortaTravada(!portaTravada)}
-        style={{
-          backgroundColor: theme.buttonPrincipal,
-          marginTop: 10,
-          paddingHorizontal: 20,
-          paddingVertical: 8,
-          borderRadius: 15,
-          color: "white",
-        }}
-      >
-        Alternar
-      </Text>
-    </View>
-  </View>
-</View>
-
-
-<View style={styles.card2}>
-  <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "90%" }}>
-    <View>
-      <Text style={{ fontWeight: "bold", color: theme.text, paddingHorizontal: 15, marginTop: 10 }}>Cortina Sala</Text>
-      <Text style={{ color: cortinaAberta ? "green" : "red", paddingHorizontal: 15 }}>
-        {cortinaAberta ? "Fechado" : "Aberto"}
-      </Text>
-    </View>
-
-    <View>
-      <Text
-        onPress={() => setCortinaAberta(!cortinaAberta)}
-        style={{
-          backgroundColor: theme.buttonPrincipal,
-          marginTop: 10,
-          paddingHorizontal: 20,
-          paddingVertical: 8,
-          borderRadius: 15,
-          color: "white",
-        }}
-      >
-        Alternar
-      </Text>
-    </View>
-  </View>
-</View>
-
-<View style={styles.card3}>
-  <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "90%" }}>
-    <View>
-      <Text style={{ fontWeight: "bold", color: theme.text, paddingHorizontal: 15, marginTop: 10 }}>Cortina Sala</Text>
-      <Text style={{ color: luzDesligada ? "green" : "red", paddingHorizontal: 15 }}>
-        {luzDesligada ? "Ligado" : "Desligado"}
-      </Text>
-    </View>
-
-    <View>
-      <Text
-        onPress={() => setluzDesligada(!luzDesligada)}
-        style={{
-          backgroundColor: theme.buttonPrincipal,
-          marginTop: 10,
-          paddingHorizontal: 20,
-          paddingVertical: 8,
-          borderRadius: 15,
-          color: "white",
-        }}
-      >
-        Alternar
-      </Text>
-    </View>
-  </View>
-</View>
-
+        {/* Card da Porta */}
+        <View style={styles.card}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "90%",
+            }}
+          >
+            <View>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  color: "black",
+                  paddingHorizontal: 15,
+                  marginTop: 10,
+                }}
+              >
+                Porta Principal
+              </Text>
+              <Text
+                style={{
+                  color: portaTravada ? "green" : "red",
+                  paddingHorizontal: 15,
+                }}
+              >
+                {portaTravada ? "Travado" : "Destravado"}
+              </Text>
+            </View>
+            <Animated.View
+              style={{
+                transform: [
+                  {
+                    rotateY: portaAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: ["50deg", "0deg"], // Porta gira 90 graus
+                    }),
+                  },
+                ],
+              }}
+            >
+              <Icon
+                name="door"
+                size={50}
+                color={portaTravada ? "green" : "red"}
+              />
+            </Animated.View>
+          </View>
+          <TouchableOpacity style={styles.actionButton} onPress={togglePorta}>
+            <Text style={styles.actionButtonText}>
+              {portaTravada ? "Destravar" : "Travar"}
+            </Text>
+          </TouchableOpacity>
         </View>
 
-        
-    </View>
+        {/* Card da Cortina */}
+        <View style={styles.card}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "90%",
+            }}
+          >
+            <View>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  color: "black",
+                  paddingHorizontal: 15,
+                  marginTop: 10,
+                }}
+              >
+                Cortina
+              </Text>
+              <Text
+                style={{
+                  color: cortinaAberta ? "green" : "red",
+                  paddingHorizontal: 15,
+                }}
+              >
+                {cortinaAberta ? "Aberta" : "Fechada"}
+              </Text>
+            </View>
+            <Animated.View
+              style={{
+                transform: [
+                  {
+                    translateY: cortinaAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, -50], // Cortina desliza para cima
+                    }),
+                  },
+                ],
+              }}
+            >
+              <Icon
+                name="blinds"
+                size={50}
+                color={cortinaAberta ? "green" : "red"}
+              />
+            </Animated.View>
+          </View>
+          <TouchableOpacity style={styles.actionButton} onPress={toggleCortina}>
+            <Text style={styles.actionButtonText}>
+              {cortinaAberta ? "Fechar" : "Abrir"}
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-        
+        {/* Card da Luz */}
+        <View style={styles.card}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "90%",
+            }}
+          >
+            <View>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  color: "black",
+                  paddingHorizontal: 15,
+                  marginTop: 10,
+                }}
+              >
+                Luz da Cozinha
+              </Text>
+              <Text
+                style={{
+                  color: luzLigada ? "green" : "red",
+                  paddingHorizontal: 15,
+                }}
+              >
+                {luzLigada ? "Ligada" : "Desligada"}
+              </Text>
+            </View>
+            <Animated.View>
+              <Icon
+                name="lightbulb"
+                size={50}
+                color={luzLigada ? "orange" : "gray"}
+              />
+            </Animated.View>
+          </View>
+          <TouchableOpacity style={styles.actionButton} onPress={toggleLuz}>
+            <Text style={styles.actionButtonText}>
+              {luzLigada ? "Desligar" : "Ligar"}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
   );
 }
 
 const createStyles = (theme) =>
   StyleSheet.create({
-  container: {
-    backgroundColor: theme.background,
-    flex: 1,
-  },
-  top: {
-    backgroundColor: theme.buttonSecundario,
-  },
-  Flecha: {
-    position: "absolute", // Permite posicionar a seta de forma absoluta
-    top: 70, // Ajuste a posição vertical da seta
-    left: 20, // Ajuste a posição horizontal da seta
-    fontSize: 30,
-  },
-      Title: {
+    container: {
+      backgroundColor: theme.background,
+      flex: 1,
+    },
+    top: {
+      backgroundColor: theme.buttonSecundario,
+    },
+    Flecha: {
+      position: "absolute", // Permite posicionar a seta de forma absoluta
+      top: 70, // Ajuste a posição vertical da seta
+      left: 20, // Ajuste a posição horizontal da seta
+      fontSize: 30,
+    },
+    Title: {
       marginTop: 60,
       marginLeft: 65,
       fontSize: 30,
       fontWeight: "bold",
-      color: theme.title
+      color: theme.title,
     },
     SubTitle: {
       marginTop: 0,
       marginLeft: 65,
       fontSize: 16,
       opacity: 0.5,
-      color: theme.title
+      color: theme.title,
     },
     line: {
       marginTop: 10, // Espaço entre os textos e a linha
@@ -155,57 +266,33 @@ const createStyles = (theme) =>
       borderBottomColor: theme.title, // Cor da linha
     },
 
-//-----------------------------------------
+    //-----------------------------------------
 
-   control: {
-      backgroundColor: theme.buttonSecundario,
-      borderRadius: 20,
-      width: 400,
-      marginHorizontal: 15,
-      marginTop: 30,
-      shadowRadius: { width: 0, height: 12 },
-      shadowOpacity: 0.58,
-      shadowRadius: 16,
-      elevation: 10,
-      shadowColor: theme.shadowColor,
-      justifyContent: 'center',
-      alignItems: 'center'
+    control: {
+      padding: 20,
     },
-
     tituloControl: {
-      margin: 10,
-      color: theme.text,
+      fontSize: 18,
+      fontWeight: "bold",
+      marginBottom: 20,
     },
-
-    card1: {
-      backgroundColor: theme.background,
-      borderColor: theme.border,
-      borderWidth: 2,
-      borderRadius: 20,
-      width: 380,
-      height:60,
-      marginTop: 25,
+    card: {
+      backgroundColor: "#FFF",
+      borderColor: "#CCC",
+      borderWidth: 1,
+      borderRadius: 10,
+      padding: 15,
+      marginBottom: 20,
     },
-    
-    card2: {
-      backgroundColor: theme.background,
-      borderColor: theme.border,
-      borderWidth: 2,
-      borderRadius: 20,
-      width: 380,
-      height:60,
-      marginTop: 25
+    actionButton: {
+      backgroundColor: "#244F7E",
+      paddingVertical: 10,
+      borderRadius: 10,
+      alignItems: "center",
+      marginTop: 10,
     },
-
-    card3: {
-      backgroundColor: theme.background,
-      borderColor: theme.border,
-      borderWidth: 2,
-      borderRadius: 20,
-      width: 380,
-      height:60,
-      marginTop: 25,
-      marginBottom: 25
+    actionButtonText: {
+      color: "#FFF",
+      fontWeight: "bold",
     },
-});
-
+  });

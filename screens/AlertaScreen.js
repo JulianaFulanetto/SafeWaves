@@ -3,31 +3,58 @@ import {
   View,
   Text,
   StyleSheet,
+  FlatList,
   TextInput,
   TouchableOpacity,
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import mqttService from "../src/services/mqttService"; // Importa o serviço MQTT
 import { useThemeStyles } from "../hooks/useThemeStyles";
 
 export default function AlertaScreen({ navigation }) {
   const styles = createStyles(useThemeStyles());
   const [alertas, setAlertas] = useState([]); // Lista de alertas recebidos via MQTT
+  const [customMessage, setCustomMessage] = useState(""); // Mensagem personalizada do usuário
 
   useEffect(() => {
     let isMounted = true;
 
+    // Conecta ao MQTT e adiciona mensagens recebidas ao estado
     mqttService.connect((message) => {
       if (isMounted) {
         setAlertas((prev) => [...prev, message]);
       }
     });
 
+    // Envia alertas automáticos a cada 3 segundos
+    const alertTypes = [
+      { tipo: "gás", mensagem: "Nível alto de gás detectado!" },
+      { tipo: "queda", mensagem: "Queda detectada!" },
+      { tipo: "movimento", mensagem: "Movimento detectado!" },
+    ];
+    let alertIndex = 0;
+
+    const interval = setInterval(() => {
+      if (isMounted) {
+        setAlertas((prev) => [...prev, alertTypes[alertIndex]]);
+        alertIndex = (alertIndex + 1) % alertTypes.length; // Alterna entre os tipos de alerta
+      }
+    }, 3000);
+
     return () => {
       isMounted = false;
+      clearInterval(interval); // Limpa o intervalo ao desmontar o componente
     };
   }, []);
+
+  // Adiciona uma mensagem personalizada ao estado
+  const handleAddCustomAlert = () => {
+    if (customMessage.trim() !== "") {
+      const newAlert = { tipo: "personalizado", mensagem: customMessage };
+      setAlertas((prev) => [...prev, newAlert]);
+      setCustomMessage(""); // Limpa o campo de entrada
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -44,64 +71,35 @@ export default function AlertaScreen({ navigation }) {
         <View style={styles.line} />
       </View>
 
-      <View style={styles.row}>
-        <View style={styles.red}>
-          <Text style={styles.numVerm}>85</Text>
-          <Text style={styles.subNomeCardVerm}>Alertas Ativos</Text>
-        </View>
+      <Text style={styles.alertTitle}>Alertas Recebidos:</Text>
 
-        <View style={styles.green}>
-          <Text style={styles.numVerd}>25</Text>
-          <Text style={styles.subNomeCardVerd}>Resolvidos</Text>
-        </View>
-
-        <View style={styles.blue}>
-          <Text style={styles.numAzul}>25</Text>
-          <Text style={styles.subNomeCardAzul}>Total</Text>
-        </View>
-      </View>
-
-      <View style={styles.acoesRap}>
-        <Text style={styles.textAcoes}>Ações Rápidas</Text>
-
-        {/* Barra de pesquisa */}
+      {/* Campo de entrada para mensagens personalizadas */}
+      <View style={styles.inputContainer}>
         <TextInput
-          style={styles.searchBar}
-          placeholder="Pesquisar alertas..."
-          placeholderTextColor="#999"
+          style={styles.input}
+          placeholder="Digite uma mensagem de alerta..."
+          value={customMessage}
+          onChangeText={setCustomMessage}
         />
-
-        <View style={styles.rowButtons}>
-          <TouchableOpacity
-            style={styles.botaoVermelho}
-            onPress={() => {
-              // Simula o envio de um alerta via MQTT
-              console.log("Botão de emergência pressionado!");
-            }}
-          >
-            <Ionicons name="notifications-outline" size={15} color="#FFFFFF" />
-            <Text style={styles.textBotaoVerm}> Emergência</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={handleAddCustomAlert}
+        >
+          <Text style={styles.addButtonText}>Adicionar Alerta</Text>
+        </TouchableOpacity>
       </View>
 
-      {/* Lista de alertas recebidos via MQTT */}
-      <Text
-        style={{
-          marginTop: 20,
-          fontSize: 18,
-          color: "#244F7E",
-          fontWeight: "bold",
-        }}
-      >
-        Alertas Recebidos:
-      </Text>
-      {alertas.map((alerta, index) => (
-        <View key={index} style={styles.alertItem}>
-          <Text style={styles.alertText}>Tipo: {alerta.tipo}</Text>
-          <Text style={styles.alertText}>{alerta.mensagem}</Text>
-        </View>
-      ))}
+      {/* Lista de alertas */}
+      <FlatList
+        data={alertas}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.alertItem}>
+            <Text style={styles.alertTipo}>Tipo: {item.tipo}</Text>
+            <Text style={styles.alertMensagem}>{item.mensagem}</Text>
+          </View>
+        )}
+      />
     </View>
   );
 }
@@ -140,113 +138,49 @@ const createStyles = (theme) =>
       borderBottomWidth: 1,
       borderBottomColor: theme.title,
     },
-    row: {
-      flexDirection: "row",
-      justifyContent: "space-between",
+    alertTitle: {
       marginTop: 20,
+      fontSize: 18,
+      color: "#244F7E",
+      fontWeight: "bold",
+      marginLeft: 15,
     },
-    red: {
-      backgroundColor: theme.vermelho,
-      flex: 1,
-      height: 129,
-      borderRadius: 20,
-      borderColor: theme.bordaverm,
-      borderWidth: 1,
-      marginHorizontal: 15,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    numVerm: {
-      color: theme.bordaverm,
-    },
-    subNomeCardVerm: {
-      color: theme.bordaverm,
-    },
-    green: {
-      backgroundColor: theme.verde,
-      flex: 1,
-      height: 129,
-      borderRadius: 20,
-      borderColor: theme.bordaverd,
-      borderWidth: 1,
-      marginHorizontal: 15,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    numVerd: {
-      color: theme.bordaverd,
-    },
-    subNomeCardVerd: {
-      color: theme.bordaverd,
-    },
-    blue: {
-      backgroundColor: theme.azul,
-      flex: 1,
-      height: 129,
-      borderRadius: 20,
-      borderColor: theme.bordaazul,
-      borderWidth: 1,
-      marginHorizontal: 15,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    numAzul: {
-      color: theme.bordaazul,
-    },
-    subNomeCardAzul: {
-      color: theme.bordaazul,
-    },
-    acoesRap: {
-      backgroundColor: theme.buttonSecundario,
-      borderRadius: 20,
-      borderColor: theme.buttonSecundario,
-      borderWidth: 1,
-      width: "100%",
-      height: 150,
-      marginTop: 40,
-      padding: 10,
-    },
-    textAcoes: {
-      marginBottom: 10,
-      color: theme.text,
-      fontSize: 16,
-    },
-    searchBar: {
-      backgroundColor: "#FFFFFF",
-      borderRadius: 10,
-      paddingHorizontal: 15,
-      paddingVertical: 8,
-      marginBottom: 10,
-      fontSize: 16,
-      color: "#000",
-    },
-    rowButtons: {
+    inputContainer: {
       flexDirection: "row",
-      justifyContent: "space-between",
-      marginTop: 5,
-    },
-    botaoVermelho: {
-      width: "100%",
-      backgroundColor: theme.bordaverm,
-      borderRadius: 100,
-      paddingVertical: 10,
       alignItems: "center",
-      justifyContent: "center",
-      alignSelf: "center",
-      top: 12,
+      margin: 15,
     },
-    textBotaoVerm: {
-      color: "#FFFFFF",
-      fontSize: 12,
+    input: {
+      flex: 1,
+      borderWidth: 1,
+      borderColor: "#CCC",
+      borderRadius: 10,
+      padding: 10,
+      marginRight: 10,
+    },
+    addButton: {
+      backgroundColor: "#244F7E",
+      padding: 10,
+      borderRadius: 10,
+    },
+    addButtonText: {
+      color: "#FFF",
+      fontWeight: "bold",
     },
     alertItem: {
       backgroundColor: "#EEE",
       padding: 10,
       marginVertical: 5,
+      marginHorizontal: 15,
       borderRadius: 10,
     },
-    alertText: {
+    alertTipo: {
+      fontSize: 16,
+      fontWeight: "bold",
       color: "#333",
+    },
+    alertMensagem: {
       fontSize: 14,
+      color: "#555",
     },
   });
