@@ -1,4 +1,5 @@
 
+
 //Importa o criador de abas (Bottom Tabs) do react Navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 //Importa o criador de pilhas (Stack Navigator)
@@ -14,14 +15,21 @@ import HomeScreen from "./screens/HomeScreen";
 import AlertaScreen from "./screens/AlertaScreen";
 import ImagemScreen from "./screens/ImagemScreen";
 
+
 import { useThemeStyles } from "./hooks/useThemeStyles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+import LoginScreen from "./screens/LoginScreen";
+import CadastroScreen from "./screens/CadastroScreen";
 import MonitoramentoScreen from "./screens/MonitoramentoScreen";
 import RelatorioScreen from "./screens/RelatorioScreen";
 import ConfiguracaoScreen from "./screens/ConfiguracaoScreen";
 import RotaScreen from "./screens/RotaScreen";
 import ComunidadeScreen from "./screens/ComunidadeScreen";
+
+import ComunidadeChatScreen from "./screens/ComunidadeChatScreen";
+import InstituicaoScreen from "./screens/InstituicaoScreen";
+import RedeScreen from "./screens/RedeScreen";
 
 //icons
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -43,42 +51,72 @@ function HomeStack() {
       <Stack.Screen name="AlertaScreen" component={AlertaScreen} />
       <Stack.Screen name="ImagemScreen" component={ImagemScreen} />
     </Stack.Navigator>
-  );
+  )
+}
+
+function ComunidadeStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="ComunidadeScreen" component={ComunidadeScreen} />
+      <Stack.Screen name="ComunidadeChatScreen" component={ComunidadeChatScreen} />
+      <Stack.Screen name="InstituicaoScreen" component={InstituicaoScreen} />
+      <Stack.Screen name="RedeScreen" component={RedeScreen} />
+    </Stack.Navigator>
+  )
 }
 
 // ---------- APLICAÇÃO PRINCIPAL ----------
 export default function App() {
-  const styles = createStyles(useThemeStyles()); // Usa o tema para criar os estilos
+  const theme = useThemeStyles();   // pega o tema real aqui
+  const styles = createStyles(theme);
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <NavigationContainer>
-        <Tab.Navigator
-          style={styles.tab}
-          screenOptions={{
-            headerShown: false,
-            tabBarActiveTintColor: "#244F7E",
-            tabBarInactiveTintColor: "#253448",
-            tabBarHideOnKeyboard: true,
-            tabBarActiveBackgroundColor: "#021024",
-            tabBarInactiveBackgroundColor: "#021024",
-            animation: "shift",
-            tabBarStyle: {
-              backgroundColor: "#021024",
-            },
-            tabBarItemStyle: {
-              borderTopWidth: 0,
-              borderTopColor: "#244F7E",
-            },
-          }}
-        >
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {/* Telas de Login e Cadastro */}
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Cadastro" component={CadastroScreen} />
+        <Stack.Screen name="Main">
+         {(props) => <MainTabs {...props} theme={theme} />}
+        </Stack.Screen>
+
+
+        {/* Navegação principal com abas */}
+      </Stack.Navigator>
+    </NavigationContainer>
+  </GestureHandlerRootView>
+);
+}
+
+// ---------- NAVEGAÇÃO COM ABAS ----------
+function MainTabs({ theme }) {
+  const styles = createStyles(theme);
+return (
+  <Tab.Navigator
+    style={styles.tab}
+    screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: theme.buttonSecundario,
+      tabBarInactiveTintColor: theme.background,
+      tabBarHideOnKeyboard: true,
+      tabBarActiveBackgroundColor: theme.buttonSecundario,
+      tabBarInactiveBackgroundColor: theme.background,
+      animation: "shift",
+      borderTopWidth: 5, // remove linha superior
+
+      tabBarStyle: {
+        backgroundColor: theme.background,
+      },
+    }}
+  >
           <Tab.Screen
             name="Home"
             component={HomeStack} // ← Aqui usamos o Stack
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Text style={{ fontSize: size * 0.8, color }}>
-                  <Ionicons name="home-outline" size={24} color="#244F7E" />
+                  <Ionicons name="home-outline" size={24} color= {theme.text} />
                 </Text>
               ),
             }}
@@ -89,7 +127,7 @@ export default function App() {
             component={MonitoramentoScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Feather name="activity" size={24} color="#244F7E" />
+                <Feather name="activity" size={24} color= {theme.text} />
               ),
             }}
           />
@@ -99,7 +137,7 @@ export default function App() {
             component={RelatorioScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Entypo name="bar-graph" size={24} color="#244F7E" />
+                <Entypo name="bar-graph" size={24} color= {theme.text} />
               ),
             }}
           />
@@ -109,7 +147,7 @@ export default function App() {
             component={ConfiguracaoScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Octicons name="gear" size={24} color="#244F7E" />
+                <Octicons name="gear" size={24} color= {theme.text} />
               ),
             }}
           />
@@ -119,24 +157,22 @@ export default function App() {
             component={RotaScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Entypo name="map" size={24} color="#244F7E" />
+                <Entypo name="map" size={24} color= {theme.text} />
               ),
             }}
           />
 
           <Tab.Screen
             name="Comunidade"
-            component={ComunidadeScreen}
+            component={ComunidadeStack}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Ionicons name="people-outline" size={24} color="#244F7E" />
+                <Ionicons name="people-outline" size={24} color= {theme.text} />
               ),
             }}
           />
         </Tab.Navigator>
-      </NavigationContainer>
-    </GestureHandlerRootView>
-  );
+);
 }
 // Função para criar estilos dinâmicos com base no tema
 const createStyles = (theme) =>
@@ -146,6 +182,6 @@ const createStyles = (theme) =>
       backgroundColor: theme.background, // Usa a cor de fundo do tema
     },
     tab: {
-      backgroundColor: theme.card, // Usa a cor do card do tema
+      backgroundColor: theme.card, // Usa a cor do card do tema 
     },
   });

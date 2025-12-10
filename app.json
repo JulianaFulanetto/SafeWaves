@@ -13,14 +13,16 @@
       "backgroundColor": "#B3CFE5"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+		    "userInterfaceStyle": "automatic" 
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#B3CFE5"
+        "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+    "userInterfaceStyle": "automatic" 
     },
     "web": {
       "favicon": "./assets/SafeWave.png"
